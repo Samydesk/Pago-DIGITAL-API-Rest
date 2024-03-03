@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Pago Virtual</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pagina De Pago Virtual</h1>
+        </div>
+
+        <p>Prueba de Pago Virtual Con API Rest</p>
+        <p>Utilize estos datos como modo de Prueba</p>
+        <ul>
+            <li>Correo: Cualquiera</li>
+            <li>Informacion de la Tarjeta: 4000056655665556</li>
+            <li>Fecha de Vencimiento: Cualquiera Vigente</li>
+            <li>CVC: 123</li>
+            <li>Nombre del Titular: Cualquiera</li>
+            <li>Pais o Region: Cualquiera</li>
+        </ul>
+
+        <button id="checkout">
+            Pay
+        </button>
+    </div>
+
+<script>
+    const button = document.getElementById("checkout")
+    button.addEventListener("click", async () => {
+       const res = await fetch('/create-checkout-session', {
+            method: 'POST',
+        })
+        const data = await res.json()
+        console.log(data)
+        window.location.href = data.url;
+    })
+</script>
+</body>
+</html>
